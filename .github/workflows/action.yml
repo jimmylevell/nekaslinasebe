@@ -1,0 +1,30 @@
+name: 🚀 Deploy website on push
+
+on:
+  # Trigger the workflow on push
+  # but only for the master branch
+  push:
+    branches:
+      - master
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.2
+        with:
+          server: sl46.web.hostpoint.ch
+          username: deploy_2@kpsychologovi.cz
+          password: ${{ secrets.ftp_password }}
+          protocol: ftps
+          exclude: |
+            **/.git*
+            **/.git*/**
