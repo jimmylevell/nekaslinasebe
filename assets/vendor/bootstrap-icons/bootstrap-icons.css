@@ -1427,7 +1427,7 @@ url("./fonts/bootstrap-icons.woff?dd67030699838ea613ee6dbda90effa6") format("wof
 .bi-person-video::before { content: "\f677"; }
 .bi-person-video2::before { content: "\f678"; }
 .bi-person-video3::before { content: "\f679"; }
-.bi-person-workshopy a kurzypace::before { content: "\f67a"; }
+.bi-person-workspace::before { content: "\f67a"; }
 .bi-radioactive::before { content: "\f67b"; }
 .bi-webcam-fill::before { content: "\f67c"; }
 .bi-webcam::before { content: "\f67d"; }

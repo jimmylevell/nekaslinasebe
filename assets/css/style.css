@@ -270,16 +270,16 @@ h6,
   background: #000;
 }
 
-/* Workshopy a kurzy */
-.Workshopy a kurzy i {
+/* Services */
+.services i {
   font-size: 40px;
 }
 
-.Workshopy a kurzy h4 {
+.services h4 {
   padding-top: 10px;
 }
 
-/* Kontakt Form */
+/* Contact Form */
 .php-email-form .error-message {
   display: none;
   color: #fff;
