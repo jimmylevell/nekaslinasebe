@@ -7,6 +7,11 @@ function loadHTML(url, div) {
     .then(data => {
       $(div).html(data);
 
+      // prepend week to title
+      const week = url.split('/')[2]
+      const title = $(div).find('h2').text()
+      $(div).find('h2').text(week + ' - ' + title)
+
       // remove unnecessary elements
       $('nav')[1].remove();
       $('footer')[0].remove();
@@ -16,13 +21,13 @@ function loadHTML(url, div) {
 // Load all tipps to archive
 (function () {
   const numberOfTips = 6
-  const weeks = ['24-05', '24-06']
+  const weeks = ['24-05']
 
-  for (let i = 1; i <= numberOfTips; i++) {
-    weeks.forEach(week => {
+  weeks.forEach(week => {
+    for (let i = 1; i <= numberOfTips; i++) {
       const divName = 'archiv-' + week + '-' + i
       $("#archiv").append('<div id="' + divName + '"></div>');
       loadHTML('/tips/' + week + '/tip' + i + '.html', '#' + divName)
-    })
-  }
+    }
+  })
 })()
