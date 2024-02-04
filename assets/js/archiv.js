@@ -16,9 +16,13 @@ function loadHTML(url, div) {
 // Load all tipps to archive
 (function () {
   const numberOfTips = 6
+  const weeks = ['24-05', '24-06']
 
   for (let i = 1; i <= numberOfTips; i++) {
-    $("#archiv").append('<div id="archiv-' + i + '"></div>');
-    loadHTML('/archiv/stare_tipy (29.1-4.2)/tip' + i + '.html', '#archiv-' + i)
+    weeks.forEach(week => {
+      const divName = 'archiv-' + week + '-' + i
+      $("#archiv").append('<div id="' + divName + '"></div>');
+      loadHTML('/tips/' + week + '/tip' + i + '.html', '#' + divName)
+    })
   }
 })()
