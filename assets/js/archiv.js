@@ -1,14 +1,3 @@
-// load html page and insert into div
-function loadHTML(url, div) {
-  $(div).load(url + " main > *", function () {
-
-    // prepend week to title
-    const week = url.split('/')[2]
-    const title = $(div).find('h2').text()
-    $(div).find('h2').text(week + ' - ' + title)
-  })
-}
-
 // Load all tipps to archive
 (function () {
   const numberOfTips = 6
