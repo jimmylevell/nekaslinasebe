@@ -28,7 +28,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 var generateUrl = function generateUrl() {
   const days = 6
-  const weeks = ['24-05', '24-06']
+  const weeks = ['24-05', '24-06', '24-07', '24-08']
 
   const listOfTips = []
 
