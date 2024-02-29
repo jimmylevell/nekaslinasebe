@@ -5,7 +5,7 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
-(function() {
+(function () {
   "use strict";
 
   /**
@@ -45,7 +45,7 @@
    * burgerMenu
    */
   const burgerMenu = select('.burger')
-  on('click', '.burger', function(e) {
+  on('click', '.burger', function (e) {
     burgerMenu.classList.toggle('active');
   })
 
@@ -61,9 +61,9 @@
 
       let portfolioFilters = select('#filters a', true);
 
-      on('click', '#filters a', function(e) {
+      on('click', '#filters a', function (e) {
         e.preventDefault();
-        portfolioFilters.forEach(function(el) {
+        portfolioFilters.forEach(function (el) {
           el.classList.remove('active');
         });
         this.classList.add('active');
@@ -71,7 +71,7 @@
         portfolioIsotope.arrange({
           filter: this.getAttribute('data-filter')
         });
-        portfolioIsotope.on('arrangeComplete', function() {
+        portfolioIsotope.on('arrangeComplete', function () {
           AOS.refresh()
         });
       }, true);
