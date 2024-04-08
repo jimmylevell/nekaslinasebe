@@ -1,7 +1,7 @@
 // Load all tipps to archive
 (function () {
   const numberOfTips = 6
-  const weeks = ['24-05', '24-06', '24-07', '24-08', '24-09', '24-10', '24-11']
+  const weeks = ['24-05', '24-06', '24-07', '24-08', '24-09', '24-10', '24-11', '24-12', '24-13']
 
   weeks.forEach(week => {
     for (let i = 1; i <= numberOfTips; i++) {
