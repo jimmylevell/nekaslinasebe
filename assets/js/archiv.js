@@ -1,13 +1,19 @@
-// Load all tipps to archive
-(function () {
-  const numberOfTips = 6
-  const weeks = ['24-05', '24-06', '24-07', '24-08', '24-09', '24-10', '24-11', '24-12', '24-13', '24-14', '24-15', '24-16', '24-17', '24-18', '24-19', '24-20', '24-21', '24-22', '24-23', '24-25','24-26','24-27','24-28', '24-29', '24-30', '24-31', '24-47', '24-48', '24-49', '24-50', '24-51', '25-05','25-06','25-07','25-08','25-09','25-10','25-11','25-12','25-13','25-14','25-15','25-16','25-17','25-18','25-19','25-20','25-21','25-22']
+// Load all tips to archive
+(async function () {
+  // Load tips data dynamically
+  let tipsData;
+  try {
+    const response = await fetch('/data/tips.json');
+    tipsData = await response.json();
+  } catch (error) {
+    console.error('Failed to load tips data:', error);
+    return;
+  }
 
-  weeks.forEach(week => {
-    for (let i = 1; i <= numberOfTips; i++) {
-      const divName = 'archiv-' + week + '-' + i
-      $("#archiv").append('<div id="' + divName + '"></div>');
-      loadHTML('/tips/' + week + '/tip' + i + '.html', '#' + divName)
-    }
+  // Generate archive from actual tips data
+  tipsData.tips.forEach(tip => {
+    const divName = 'archiv-' + tip.week + '-' + tip.tipNumber
+    $("#archiv").append('<div id="' + divName + '"></div>');
+    loadHTML('/tips/' + tip.week + '/tip' + tip.tipNumber + '.html', '#' + divName)
   })
 })()

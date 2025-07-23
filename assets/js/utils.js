@@ -26,26 +26,49 @@ var getUrlParameter = function getUrlParameter(sParam) {
   return false;
 };
 
-var generateUrl = function generateUrl() {
+var generateUrl = async function generateUrl() {
   const days = 6
-  const weeks = ['24-05', '24-06', '24-07', '24-08', '24-09', '24-10', '24-11', '24-12', '24-13', '24-14', '24-15', '24-16', '24-17', '24-18', '24-19', '24-20', '24-21', '24-22', '24-23', '24-24', '24-25', '24-26', '24-27', '24-28', '24-29', '24-30', '24-31', '24-47', '24-48', '24-49', '24-50', '24-51', '25-05', '25-06', '25-07', '25-08']
+
+  // Load tips data dynamically
+  let tipsData;
+  try {
+    const response = await fetch('/data/tips.json');
+    tipsData = await response.json();
+  } catch (error) {
+    console.error('Failed to load tips data:', error);
+    return;
+  }
 
   const listOfTips = []
 
-  weeks.forEach(week => {
-    for (let i = 1; i <= days; i++) {
-      listOfTips.push(week + '-' + i)
-    }
+  // Generate list from actual tips data
+  tipsData.tips.forEach(tip => {
+    listOfTips.push(tip.week + '-' + tip.tipNumber)
   })
 
   // randomly select six tips
   const selectedTips = []
-  for (let i = 0; i < days; i++) {
+  for (let i = 0; i < Math.min(days, listOfTips.length); i++) {
     const randomIndex = Math.floor(Math.random() * listOfTips.length)
     selectedTips.push(listOfTips[randomIndex])
     listOfTips.splice(randomIndex, 1)
   }
 
   const link = window.document.location.origin + '/pages/weekPlaner.html?tips=' + selectedTips.join(',')
-  $('#generatedUrl').text(link)
+
+  // Create a styled button link instead of plain text
+  const buttonHtml = `
+    <div class="mt-3">
+      <p class="mb-2">Your personalized week planner is ready:</p>
+      <a href="${link}" class="btn btn-success btn-lg">
+        <i class="bi bi-calendar-week"></i> Open My Week Planner
+      </a>
+      <div class="mt-2">
+        <small class="text-muted">Or copy this link: </small>
+        <input type="text" class="form-control mt-1" value="${link}" readonly onclick="this.select()">
+      </div>
+    </div>
+  `
+
+  $('#generatedUrl').html(buttonHtml)
 }

@@ -84,60 +84,7 @@
           </div>
         </div>
         <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
-          <div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">
-            <a href="/tips/25-28/tip1.html" class="item-wrap fancybox">
-              <div class="work-info">
-                <h3>1.tip #nekaslinasebe</h3>
-                <span>- klikni na mě -</span>
-              </div>
-              <img class="img-fluid" src="/assets/img/25-28/img_1.jpg">
-            </a>
-          </div>
-          <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4">
-            <a href="/tips/25-28/tip2.html" class="item-wrap fancybox">
-              <div class="work-info">
-                <h3>2.tip #nekaslinasebe</h3>
-                <span>- klikni na mě -</span>
-              </div>
-              <img class="img-fluid" src="/assets/img/25-28/img_3.jpg">
-            </a>
-          </div>
-          <div class="item branding col-sm-6 col-md-4 col-lg-4 mb-4">
-            <a href="/tips/25-28/tip3.html" class="item-wrap fancybox">
-              <div class="work-info">
-                <h3>3.tip #nekaslinasebe</h3>
-                <span>- klikni na mě -</span>
-              </div>
-              <img class="img-fluid" src="/assets/img/25-28/img_5.jpg">
-            </a>
-          </div>
-          <div class="item design col-sm-6 col-md-4 col-lg-4 mb-4">
-            <a href="/tips/25-28/tip4.html" class="item-wrap fancybox">
-              <div class="work-info">
-                <h3>4.tip #nekaslinasebe</h3>
-                <span>- klikni na mě -</span>
-              </div>
-              <img class="img-fluid" src="/assets/img/25-28/img_3.jpg">
-            </a>
-          </div>
-          <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4">
-            <a href="/tips/25-28/tip5.html" class="item-wrap fancybox">
-              <div class="work-info">
-                <h3>5.tip #nekaslinasebe</h3>
-                <span>- klikni na mě -</span>
-              </div>
-              <img class="img-fluid" src="/assets/img/25-28/img_2.jpg">
-            </a>
-          </div>
-          <div class="item branding col-sm-6 col-md-4 col-lg-4 mb-4">
-            <a href="/tips/25-28/tip6.html" class="item-wrap fancybox">
-              <div class="work-info">
-                <h3>6.tip #nekaslinasebe</h3>
-                <span>- klikni na mě -</span>
-              </div>
-              <img class="img-fluid" src="/assets/img/25-28/img_6.jpg">
-            </a>
-          </div>
+          <!-- Content will be dynamically loaded -->
         </div>
         <p><b>PS:</b> Je čiště jen a jen na tobě, jestli si na <b>celý týden vybereš jeden tip</b> a ten budeš zkoušet v
           různých časových variantách. Nebo jestli budeš každý den zkoušet jiný tip. Tady <b>mysli</b> hlavně a
@@ -152,7 +99,9 @@
                 href="https://skillmea.cz/online-kurzy/emocni-fitko-jak-na-emoce">kurz emočního fitka: jak na
                 emoce</a></b>, který tě naučí efektivně pracovat s emocemi. Právě díky tomu budeme moct pokračovat v
             poskytování
-            každodenních #nekaslinasebe tipů zdarma. Novinkou je knížka <b><a href="https://obchod.portal.cz/hry-a-procvicovani/nekasli-na-sebe" target="_blank">Nekašli na sebe: Tvůj parťák na cestě s emocemi.</a></b> Předem moc děkujeme.
+            každodenních #nekaslinasebe tipů zdarma. Novinkou je knížka <b><a
+                href="https://obchod.portal.cz/hry-a-procvicovani/nekasli-na-sebe" target="_blank">Nekašli na sebe: Tvůj
+                parťák na cestě s emocemi.</a></b> Předem moc děkujeme.
           </p>
         </div>
       </div>
@@ -201,6 +150,16 @@
 
   <!-- Template Main JS File -->
   <script src="/assets/js/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/assets/js/tipManager.js"></script>
+
+  <script>
+    // Load dynamic homepage content
+    document.addEventListener('DOMContentLoaded', async function () {
+      await tipManager.init();
+      tipManager.generateHomepageTips();
+    });
+  </script>
 </body>
 
 </html>
