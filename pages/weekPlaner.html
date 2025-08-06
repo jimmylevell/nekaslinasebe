@@ -78,14 +78,20 @@
         <div class="row mb-5 align-items-center">
           <div class="col-md-12 col-lg-12 mb-4 mb-lg-0">
             <h2 class="mb-4">Week Planer</h2>
-            <div id="week-planer" class="text-center">
-              <div class="mb-4">
+            <div>
+              <div class="mb-4 text-center">
                 <p class="lead">Generate a personalized week with 6 random tips to help you practice self-care.</p>
-                <button class="btn btn-primary btn-lg" onclick="generateUrl()">
-                  <i class="bi bi-shuffle"></i> Feeling Lucky
+                <button class="btn btn-primary btn-lg" onclick="generateUrl(1)">
+                  <i class="bi bi-shuffle"></i> Feeling Lucky - Day Planner
                 </button>
+
+                <button class="btn btn-primary btn-lg" onclick="generateUrl(6)">
+                  <i class="bi bi-shuffle"></i> Feeling Lucky - Week Planner
+                </button>
+
+                <div id="generatedUrl" class="mt-4"></div>
               </div>
-              <div id="generatedUrl" class="mt-4"></div>
+              <div id="week-planer"></div>
             </div>
           </div>
         </div>

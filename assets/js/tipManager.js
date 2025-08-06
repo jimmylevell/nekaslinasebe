@@ -61,6 +61,7 @@ class TipManager {
                 <h3>${tip.title}</h3>
                 <span>- klikni na mě -</span>
               </div>
+              <span class="overlay category">${tip.category}</span>
               <img class="img-fluid" src="${tip.image}">
             </a>
           </div>
