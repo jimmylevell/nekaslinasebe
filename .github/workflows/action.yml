@@ -17,6 +17,14 @@ jobs:
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run Migrations
+        run: |
+          npm run migrate
 
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

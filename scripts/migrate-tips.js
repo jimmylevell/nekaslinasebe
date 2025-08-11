@@ -12,21 +12,16 @@ class SimpleTipsMigrator {
 
         this.weeks = [];
         this.tips = [];
-        this.categoryMap = {
-            1: 'web',
-            2: 'photography',
-            3: 'branding',
-            4: 'design',
-            5: 'photography',
-            6: 'branding'
-        };
     }
 
     async migrate() {
         console.log('🚀 Starting migration of existing tips...');
 
+        const currentTips = JSON.parse(fs.readFileSync(this.dataFile, 'utf8'));
+
+
         try {
-            await this.scanTipsDirectories();
+            await this.scanTipsDirectories(currentTips);
             await this.generateWeeksData();
             await this.saveMigratedData();
 
@@ -38,7 +33,7 @@ class SimpleTipsMigrator {
         }
     }
 
-    async scanTipsDirectories() {
+    async scanTipsDirectories(currentTips) {
         console.log('📁 Scanning tips directories...');
 
         const directories = fs.readdirSync(this.tipsDir, { withFileTypes: true })
@@ -47,11 +42,11 @@ class SimpleTipsMigrator {
 
         for (const weekId of directories) {
             console.log(`  Processing week: ${weekId}`);
-            await this.processWeek(weekId);
+            await this.processWeek(weekId, currentTips);
         }
     }
 
-    async processWeek(weekId) {
+    async processWeek(weekId, currentTips) {
         const weekDir = path.join(this.tipsDir, weekId);
         const tipFiles = fs.readdirSync(weekDir)
             .filter(file => file.startsWith('tip') && file.endsWith('.html'))
@@ -60,12 +55,14 @@ class SimpleTipsMigrator {
         for (const tipFile of tipFiles) {
             const tipNumber = parseInt(tipFile.replace('tip', '').replace('.html', ''));
             if (!isNaN(tipNumber)) {
-                await this.processTip(weekId, tipNumber);
+                console.log(`    Processing tip ${currentTips}...`);
+                const tipData = currentTips.tips.find(t => t.week === weekId && t.tipNumber === tipNumber) || null;
+                await this.processTip(weekId, tipNumber, tipData);
             }
         }
     }
 
-    async processTip(weekId, tipNumber) {
+    async processTip(weekId, tipNumber, oldTipData) {
         const tipFilePath = path.join(this.tipsDir, weekId, `tip${tipNumber}.html`);
 
         if (!fs.existsSync(tipFilePath)) {
@@ -75,7 +72,7 @@ class SimpleTipsMigrator {
 
         try {
             const htmlContent = fs.readFileSync(tipFilePath, 'utf8');
-            const tipData = this.extractTipDataRegex(htmlContent, weekId, tipNumber);
+            const tipData = this.extractTipDataRegex(htmlContent, weekId, tipNumber, oldTipData);
 
             if (tipData) {
                 this.tips.push(tipData);
@@ -86,7 +83,7 @@ class SimpleTipsMigrator {
         }
     }
 
-    extractTipDataRegex(htmlContent, weekId, tipNumber) {
+    extractTipDataRegex(htmlContent, weekId, tipNumber, oldTipData) {
         // Extract title using regex
         const titleMatch = htmlContent.match(/<h2[^>]*>(.*?)<\/h2>/i);
         const title = titleMatch ? titleMatch[1].replace(/<[^>]*>/g, '').trim() : `${tipNumber}.tip #nekaslinasebe`;
@@ -158,8 +155,11 @@ class SimpleTipsMigrator {
             imageBig = image; // Use same as regular image if big doesn't exist
         }
 
-        // Determine category based on tip number
-        const category = this.categoryMap[tipNumber] || 'web';
+        // check if already category present
+        let category = "Emotion";
+        if (oldTipData && oldTipData.category) {
+            category = oldTipData.category; // Use existing category if available
+        }
 
         return {
             week: weekId,
@@ -286,13 +286,6 @@ class SimpleTipsMigrator {
         const dataDir = path.dirname(this.dataFile);
         if (!fs.existsSync(dataDir)) {
             fs.mkdirSync(dataDir, { recursive: true });
-        }
-
-        // Create backup of existing file
-        if (fs.existsSync(this.dataFile)) {
-            const backupFile = this.dataFile + '.backup.' + Date.now();
-            fs.copyFileSync(this.dataFile, backupFile);
-            console.log(`    💾 Created backup: ${backupFile}`);
         }
 
         // Save the merged data
