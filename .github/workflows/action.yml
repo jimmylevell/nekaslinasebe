@@ -2,18 +2,20 @@ name: 🚀 Deploy website on push
 
 on:
   # Trigger the workflow on push
-  # but only for the master branch
+  # for master/prod (FTP deploy) and dev (GitHub Pages) branches
   push:
     branches:
       - master
+      - dev
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  prod-deploy:
+    name: PROD - Deploy to FTP
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
@@ -40,3 +42,47 @@ jobs:
             **/.git*/**
             **/.github*
             **/.github*/**
+
+  dev-deploy:
+    name: DEV - Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev'
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run Migrations
+        run: |
+          npm run migrate
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: |
+            .
+            !./.devcontainer
+            !./.git
+            !./.github
+            !./node_modules
+            !./package*.json
+            !*.md
+            !./scripts/
+            !./MIGRATION_COMPLETE.md
+            !./CONTENT_MANAGEMENT.md
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
