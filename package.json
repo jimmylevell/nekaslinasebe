@@ -2,7 +2,7 @@
   "scripts": {
     "start": "http-server -p 8080",
     "dev": "http-server -p 8080 -c-1",
-    "migrate": "node .\\scripts\\migrate-tips.js"
+    "migrate": "node ./scripts/migrate-tips.js"
   },
   "dependencies": {
     "http-server": "^14.1.1"
