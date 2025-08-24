@@ -18,9 +18,9 @@ permissions:
 
 jobs:
   prod-deploy:
-    name: PROD - Deploy to FTP
+    name: Build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
@@ -33,6 +33,12 @@ jobs:
         run: |
           npm run migrate
 
+  prod-deploy:
+    name: PROD - Deploy to FTP
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    depends-on: Build
+    steps:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -49,28 +55,12 @@ jobs:
             **/.github*/**
             **/scripts/*
 
-  dev-deploy:
-    name: DEV - Deploy to GitHub Pages
+  dev-prepare:
+    name: DEV - Prepare for GitHub Pages
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/dev'
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Run Migrations
-        run: |
-          npm run migrate
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
@@ -79,6 +69,17 @@ jobs:
         with:
           path: "."
 
+  dev-deploy:
+    name: DEV - Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev'
+    depends-on: dev-prepare
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
