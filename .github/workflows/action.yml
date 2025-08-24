@@ -33,12 +33,24 @@ jobs:
         run: |
           npm run migrate
 
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: website-files
+          path: ./
+
   prod-deploy:
     name: PROD - Deploy to FTP
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     needs: build
     steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: website-files
+          path: ./
+
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -62,8 +74,15 @@ jobs:
     if: github.ref == 'refs/heads/dev'
 
     steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: website-files
+          path: ./
+
       - name: test
         run: ls -la
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
