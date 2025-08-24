@@ -42,6 +42,7 @@ jobs:
             **/.git*/**
             **/.github*
             **/.github*/**
+            **/scripts/*
 
   dev-deploy:
     name: DEV - Deploy to GitHub Pages
@@ -73,15 +74,15 @@ jobs:
         with:
           path: |
             .
-            !./.devcontainer
-            !./.git
-            !./.github
-            !./node_modules
-            !./package*.json
+            !.devcontainer
+            !.git
+            !.github
+            !node_modules
+            !package*.json
             !*.md
-            !./scripts/
-            !./MIGRATION_COMPLETE.md
-            !./CONTENT_MANAGEMENT.md
+            !scripts
+            !MIGRATION_COMPLETE.md
+            !CONTENT_MANAGEMENT.md
 
       - name: Deploy to GitHub Pages
         id: deployment
