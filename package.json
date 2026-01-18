@@ -4,14 +4,31 @@
   "description": "Weekly tips management system",
   "main": "index.html",
   "scripts": {
-    "start": "serve -p 8080",
-    "dev": "serve -p 8080 -c-1",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "start": "vite",
     "migrate": "node ./scripts/migrate-tips.js"
   },
-  "keywords": ["tips", "weekly", "management"],
+  "keywords": [
+    "tips",
+    "weekly",
+    "management"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-router-dom": "^7.12.0",
     "serve": "^14.2.5"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.9",
+    "@types/react": "^19.2.8",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1"
   }
 }
