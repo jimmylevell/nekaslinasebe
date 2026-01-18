@@ -41,7 +41,7 @@ jobs:
       - name: Build website
         env:
           NODE_ENV: production
-          PUBLIC_URL: "nekaslinasebe/"
+          VITE_BASE_PATH: "/nekaslinasebe/"
         run: |
           npm run build
 
