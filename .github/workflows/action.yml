@@ -43,13 +43,18 @@ jobs:
 
       - name: Prepare artifacts
         run: |
-          cp -r ./assets ./dist/assets
+          cp -r ./assets/* ./dist/assets
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: github-pages
+          name: website
           path: ./dist/
+
+      - name: Upload GitHub Pages artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
 
   prod-deploy:
     name: PROD - Deploy to FTP
@@ -60,7 +65,7 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v5
         with:
-          name: github-pages
+          name: website
           path: ./
 
       - name: 📂 Sync files
@@ -87,12 +92,6 @@ jobs:
     if: github.ref == 'refs/heads/dev'
 
     steps:
-      - name: Download build artifacts
-        uses: actions/download-artifact@v5
-        with:
-          name: github-pages
-          path: ./
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
