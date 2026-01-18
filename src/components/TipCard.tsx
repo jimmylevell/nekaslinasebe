@@ -8,7 +8,7 @@ interface TipCardProps {
 export const TipCard = ({ tip }: TipCardProps) => {
   return (
     <div className={`item ${tip.category} col-sm-6 col-md-4 col-lg-4 mb-4`}>
-      <Link to={`/tips/${tip.week}/tip${tip.tipNumber}`} className="item-wrap fancybox">
+      <Link to={`/tips/${tip.week}/${tip.tipNumber}`} className="item-wrap fancybox">
         <div className="work-info">
           <h3>{tip.title}</h3>
           <span>- klikni na mě -</span>
