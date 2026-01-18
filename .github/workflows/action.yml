@@ -41,6 +41,10 @@ jobs:
         run: |
           npm run build
 
+      - name: Prepare artifacts
+        run: |
+          cp -r ./assets ./dist/assets
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -89,24 +93,9 @@ jobs:
           name: website-files
           path: ./
 
-      - name: test
-        run: ls -la
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: "./"
-
-  dev-deploy:
-    name: DEV - Deploy to GitHub Pages
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/dev'
-    needs: dev-prepare
-
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
