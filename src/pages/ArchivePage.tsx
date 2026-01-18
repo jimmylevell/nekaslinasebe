@@ -1,8 +1,10 @@
 import { useTips } from '../hooks/useTips';
 import { TipCard } from '../components/TipCard';
+import { useTranslation } from 'react-i18next';
 
 export const ArchivePage = () => {
   const { getAllTips, loading, error } = useTips();
+  const { t } = useTranslation();
 
   const tips = getAllTips();
 
@@ -12,8 +14,8 @@ export const ArchivePage = () => {
         <div className="container">
           <div className="row mb-5 align-items-center">
             <div className="col-md-12 col-lg-12 mb-4 mb-lg-0">
-              <h2 className="mb-4">Archiv</h2>
-              <p>Načítání...</p>
+              <h2 className="mb-4">{t('archive.title')}</h2>
+              <p>{t('common.loading')}</p>
             </div>
           </div>
         </div>
@@ -27,8 +29,8 @@ export const ArchivePage = () => {
         <div className="container">
           <div className="row mb-5 align-items-center">
             <div className="col-md-12 col-lg-12 mb-4 mb-lg-0">
-              <h2 className="mb-4">Archiv</h2>
-              <p>Chyba při načítání tipů: {error}</p>
+              <h2 className="mb-4">{t('archive.title')}</h2>
+              <p>{t('archive.errorLoading', { error })}</p>
             </div>
           </div>
         </div>
@@ -41,7 +43,7 @@ export const ArchivePage = () => {
       <div className="container">
         <div className="row mb-5 align-items-center">
           <div className="col-md-12 col-lg-12 mb-4 mb-lg-0">
-            <h2 className="mb-4">Archiv</h2>
+            <h2 className="mb-4">{t('archive.title')}</h2>
             <div id="archiv" className="row no-gutter">
               {tips.map((tip) => (
                 <TipCard key={`${tip.week}-${tip.tipNumber}`} tip={tip} />

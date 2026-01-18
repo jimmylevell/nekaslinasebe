@@ -1,14 +1,16 @@
+import { useTranslation } from 'react-i18next';
+
 export const ContactPage = () => {
+  const { t } = useTranslation();
+  
   return (
     <section className="section pb-5">
       <div className="container">
         <div className="row mb-5 align-items-end">
           <div className="col-md-6" data-aos="fade-up">
-            <h2>Kontaktuj nás</h2>
+            <h2>{t('contact.title')}</h2>
             <p className="mb-0">
-              Máš nápad na tip #nekaslinasebe nebo na vylepšení? Chceš nám dát zpětnou vazbu?
-              Neváhej nám napsat a posdílet své zkušenosti. Předem za celý tým Kpsychologovi
-              děkujeme.
+              {t('contact.intro')}
             </p>
           </div>
         </div>
@@ -18,19 +20,19 @@ export const ContactPage = () => {
             <form action="/forms/contact.php" method="post" role="form" className="php-email-form">
               <div className="row gy-3">
                 <div className="col-md-6 form-group">
-                  <label htmlFor="name">Jméno</label>
+                  <label htmlFor="name">{t('contact.name')}</label>
                   <input type="text" name="name" className="form-control" id="name" required />
                 </div>
                 <div className="col-md-6 form-group">
-                  <label htmlFor="email">E-mail</label>
+                  <label htmlFor="email">{t('contact.email')}</label>
                   <input type="email" className="form-control" name="email" id="email" required />
                 </div>
                 <div className="col-md-12 form-group">
-                  <label htmlFor="subject">Předmět</label>
+                  <label htmlFor="subject">{t('contact.subject')}</label>
                   <input type="text" className="form-control" name="subject" id="subject" required />
                 </div>
                 <div className="col-md-12 form-group">
-                  <label htmlFor="message">Chci vám napsat:</label>
+                  <label htmlFor="message">{t('contact.message')}</label>
                   <textarea
                     className="form-control"
                     name="message"
@@ -42,15 +44,15 @@ export const ContactPage = () => {
                 </div>
 
                 <div className="col-md-12 my-3">
-                  <div className="loading">Načítám</div>
+                  <div className="loading">{t('contact.loading')}</div>
                   <div className="error-message"></div>
                   <div className="sent-message">
-                    Děkujeme, tvoje zpráva byla úspěšně odeslána.
+                    {t('contact.sent')}
                   </div>
                 </div>
 
                 <div className="col-md-6 mt-0 form-group">
-                  <input type="submit" className="readmore d-block w-100" value="Odeslat" />
+                  <input type="submit" className="readmore d-block w-100" value={t('contact.submit')} />
                 </div>
               </div>
             </form>

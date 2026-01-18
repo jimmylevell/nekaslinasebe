@@ -1,20 +1,24 @@
+import { useTranslation } from 'react-i18next';
+
 export const Footer = () => {
+  const { t } = useTranslation();
+  
   return (
     <footer className="footer" role="contentinfo">
       <div className="container">
         <div className="row">
           <div className="col-sm-6">
             <p className="mb-1">
-              &copy; #nekaslinasebe tipy, fotky od{' '}
+              &copy; {t('footer.copyright')}{' '}
               <b>
                 <a href="https://luciebasniar.com/" target="_blank" rel="noopener noreferrer">
                   Lucie Bašniarová
                 </a>
               </b>{' '}
-              a Pavla Melenová
+              {t('footer.and')} Pavla Melenová
             </p>
             <div className="credits">
-              Designed by{' '}
+              {t('footer.designedBy')}{' '}
               <a href="https://bootstrapmade.com/" target="_blank" rel="noopener noreferrer">
                 BootstrapMade a James Levell
               </a>
