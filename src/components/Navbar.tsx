@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface NavItemProps {
   to: string;
@@ -17,6 +18,12 @@ interface NavbarProps {
 }
 
 export const Navbar = ({ currentPath = '/' }: NavbarProps) => {
+  const { t, i18n } = useTranslation();
+  
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
+
   return (
     <>
       {/* Collapsed Menu */}
@@ -26,22 +33,22 @@ export const Navbar = ({ currentPath = '/' }: NavbarProps) => {
             <div className="col-md-3">
               <ul className="custom-menu">
                 <NavItem to="/" active={currentPath === '/'}>
-                  #nekaslinasebe
+                  {t('navbar.home')}
                 </NavItem>
                 <NavItem to="/about" active={currentPath === '/about'}>
-                  O nás
+                  {t('navbar.about')}
                 </NavItem>
                 <NavItem to="/workshop" active={currentPath === '/workshop'}>
-                  Jak tipy používat
+                  {t('navbar.workshop')}
                 </NavItem>
                 <NavItem to="/archive" active={currentPath === '/archive'}>
-                  Archiv tipů
+                  {t('navbar.archive')}
                 </NavItem>
                 <NavItem to="/week-planner" active={currentPath === '/week-planner'}>
-                  Plánovač týdnů
+                  {t('navbar.weekPlanner')}
                 </NavItem>
                 <NavItem to="/contact" active={currentPath === '/contact'}>
-                  Kontakt
+                  {t('navbar.contact')}
                 </NavItem>
               </ul>
             </div>
@@ -50,8 +57,7 @@ export const Navbar = ({ currentPath = '/' }: NavbarProps) => {
                 <div>
                   <p>
                     <em>
-                      #nekaslinasebe tipy jsou tu pro každého, kdo se ve starání o sebe někdy
-                      ztrácí, zahlcuje ho nebo neví, jak na to.
+                      {t('navbar.tagline')}
                     </em>
                   </p>
                 </div>
@@ -67,14 +73,32 @@ export const Navbar = ({ currentPath = '/' }: NavbarProps) => {
           <Link className="navbar-brand" to="/">
             #nekaslinasebe tipy
           </Link>
-          <a
-            href="/#"
-            className="burger"
-            data-bs-toggle="collapse"
-            data-bs-target="#main-navbar"
-          >
-            <span></span>
-          </a>
+          <div className="d-flex align-items-center">
+            <div className="btn-group me-3" role="group">
+              <button
+                type="button"
+                className={`btn btn-sm ${i18n.language === 'cs' ? 'btn-primary' : 'btn-outline-primary'}`}
+                onClick={() => changeLanguage('cs')}
+              >
+                CZ
+              </button>
+              <button
+                type="button"
+                className={`btn btn-sm ${i18n.language === 'en' ? 'btn-primary' : 'btn-outline-primary'}`}
+                onClick={() => changeLanguage('en')}
+              >
+                EN
+              </button>
+            </div>
+            <a
+              href="/#"
+              className="burger"
+              data-bs-toggle="collapse"
+              data-bs-target="#main-navbar"
+            >
+              <span></span>
+            </a>
+          </div>
         </div>
       </nav>
     </>

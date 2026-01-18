@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error loading tips",
+    "clickOnMe": "- click on me -"
+  },
+  "navbar": {
+    "home": "#nekaslinasebe",
+    "about": "About Us",
+    "workshop": "How to Use Tips",
+    "archive": "Tips Archive",
+    "weekPlanner": "Week Planner",
+    "contact": "Contact",
+    "tagline": "#nekaslinasebe tips are here for everyone who sometimes gets lost in self-care, feels overwhelmed, or doesn't know how to approach it."
+  },
+  "footer": {
+    "copyright": "#nekaslinasebe tips, photos by",
+    "designedBy": "Designed by",
+    "and": "and"
+  },
+  "home": {
+    "greeting": "Hi, I'm your new mental health guide.",
+    "intro": "Every week you'll find <b>6 #nekaslinasebe tips</b>, meaning one tip for each day. You can use Sunday to rest and plan a few minutes of #nekaslinasebe for the upcoming week. Every day you can try one specific tip. By clicking on the image, you'll learn how to apply the tip concretely. Whether you have a minute, 5, or 15 minutes. Everything is prepared for you, so let's go.",
+    "ps": "<b>PS:</b> It's purely up to you whether you choose <b>one tip for the whole week</b> and try it in different time variations. Or if you try a different tip every day. Here, <b>think</b> mainly and foremost <b>about yourself</b>. Don't overwhelm yourself thinking you \"must\". The tips aren't here to overwhelm you and put pressure on you (to perform). So treat the tips in a way that's comfortable for you. Each of us has it differently, and that's okay. So #nekaslinasebe. I'm in this with you, Terka.",
+    "support": "Everything you see here, we do <b>for free</b>. If you'd like to support us, we'd appreciate it if you check out our <b><a href=\"https://kpsychologovi.cz/shop/\" target=\"_blank\" rel=\"noopener noreferrer\">nekaslinasebe products</a></b>, the <b><a href=\"https://www.kurzyproradost.cz/kurz/jak-na-uzkosti-obavy-stres-a-emoce-353?pid=774708\" target=\"_blank\" rel=\"noopener noreferrer\">anxiety course</a></b> or the <b><a href=\"https://skillmea.cz/online-kurzy/emocni-fitko-jak-na-emoce\">emotional fitness course: how to handle emotions</a></b>, which will teach you to work effectively with emotions. Thanks to this, we'll be able to continue providing daily #nekaslinasebe tips for free. A new addition is the book <b><a href=\"https://obchod.portal.cz/hry-a-procvicovani/nekasli-na-sebe\" target=\"_blank\" rel=\"noopener noreferrer\">Don't Give Up on Yourself: Your Partner on the Journey with Emotions.</a></b> Thank you in advance."
+  },
+  "about": {
+    "title": "About Us",
+    "intro": "We are the <b><a href=\"https://kpsychologovi.cz/\" target=\"_blank\" rel=\"noopener noreferrer\">Kpsychologovi</a></b> project and we help people on their journey to find a psychologist or psychotherapist. Through #nekaslinasebe, we educate on how we can take care of ourselves every day. Long-term and sustainably. We're regularly helped with tips by psychologist Nikča from the well-known Instagram profile <b><a href=\"https://www.instagram.com/psychokoutek/\" target=\"_blank\" rel=\"noopener noreferrer\">@psychokoutek</a></b>.",
+    "paragraph1": "We often think that we <b>must take care of our mental health every day and dedicate a lot of time to self-care</b>. Social media bombards us with ideal routines and happy people who, at best, work online from the beach. We experience moments of motivation, demotivation, and (in)sufficient energy. We try one thing after another. It might work for a while. But over time, we start to get lost and gradually forget about ourselves after the initial motivation. <b>Sound familiar?</b>",
+    "solution": "<b>That's why we came up with a simple solution</b>. We want to show you that you can take care of yourself every day without it taking much time. Just a minute a day is enough. Because a minute a day is 7 minutes a week, 21 minutes a month. And that counts. Or am I wrong? Everything is prepared for you. You just need to start. Don't worry, I know that's often the hardest part. I'm in this with you.",
+    "howTo": "<b>How to do it?</b><br />Some tips will suit you and some might not. Even so, you can try them. Why?",
+    "whyTry": "Because the brain likes familiar things and regularity. The more #nekaslinasebe tips you know and practice in everyday life, the more likely they'll come to mind in situations when they're really needed. When overwhelm, overwork, or self-doubt hits and you don't feel like doing anything. So keep that in mind. I have to remind myself often too.",
+    "ps": "<b>PS:</b> Adjust the tips so they suit you best. Experiment, try, and most importantly #nekaslinasebe every day. Don't worry if you skip a day or a few days. Come back, #nekaslinasebe tips will be here waiting for you."
+  },
+  "workshop": {
+    "title": "How to Use Tips?",
+    "intro": "Some tips will suit you and some might not. Even so, you can try them.",
+    "why": "<b>Why?</b>",
+    "paragraph1": "Because the brain likes <b>familiar things and regularity</b>. The more #nekaslinasebe tips you know and practice in everyday life, the more likely they'll come to mind in situations when they're really needed. When overwhelm, overwork, or self-doubt hits and you don't feel like doing anything. So keep that in mind. I have to remind myself often too.",
+    "ps1": "PS: Adjust the tips so they suit you best. <b>Experiment, try, and most importantly #nekaslinasebe every day</b>. Don't worry if you skip a day or a few days. Come back, #nekaslinasebe tips will be here waiting for you.",
+    "consistency": "Try to be consistent with #nekaslinasebe over days or weeks. You don't have to be 100% always and every day. That's not what we're playing at here. It's okay to take care of yourself at 10% one day, 35% another day, and 89% another. Don't drive #nekaslinasebe to the extreme of 0-100%, be consistently in it long-term. Just like with exercise, sleep, or eating.",
+    "remember": "<b>Remember that one 100% day in a week or month will never (yes, never) replace regularity and consistency in self-care.</b> Good luck, Terka.",
+    "question": "I received an <b>interesting question</b> on Instagram about #nekaslinasebe tips: <b>\"Do you need to draw any conclusions from the results after doing a tip, or what exactly are the tips for?\"</b> My answer is simple. <b>You don't need to draw conclusions or anything similar.</b> You don't need to pressure yourself. I understand that our society is currently focused on performance and that we naturally expect \"outputs\" from our work. #nekaslinasebe tips are trying to fight against this. They're here so that we can <b>stop for a moment and think about ourselves for a few minutes. Without judging and evaluating whether we immediately feel (or don't feel) better, whether it helped us (or didn't)</b> etc. Self-care and #nekaslinasebe isn't a <b>sprint, it's a marathon</b>. I'd be happy for more feedback and opinions. Have a nice Monday, Terka.",
+    "ps2": "<b>PS:</b> It's purely up to you whether you choose <b>one tip for the whole week</b> and try it in different time variations. Or if you try a different tip every day. Here, <b>think</b> mainly and foremost <b>about yourself</b>. Don't overwhelm yourself thinking you \"must\". The tips aren't here to overwhelm you and put pressure on you (to perform). So treat the tips in a way that's comfortable for you. Each of us has it differently, and that's okay. So #nekaslinasebe. I'm in this with you, Terka."
+  },
+  "archive": {
+    "title": "Archive",
+    "errorLoading": "Error loading tips: {{error}}"
+  },
+  "weekPlanner": {
+    "title": "Week Planner",
+    "intro": "Generate a personalized week with random tips to help you practice self-care.",
+    "feelingLuckyDay": "Feeling Lucky - Day Planner",
+    "feelingLuckyWeek": "Feeling Lucky - Week Planner",
+    "plannerReady": "Your personalized planner is ready:",
+    "openPlanner": "Open My Planner",
+    "copyLink": "Or copy this link:"
+  },
+  "tipDetail": {
+    "notFound": "Tip not found",
+    "howToInPractice": "How to apply #nekaslinasebe tip in practice?",
+    "support": "Everything you see here, we do <b>for free</b>. If you'd like to support us, we'd appreciate it if you check out our <b><a href=\"https://kpsychologovi.cz/shop/\" target=\"_blank\" rel=\"noopener noreferrer\">nekaslinasebe products</a></b>, the <b><a href=\"https://www.kurzyproradost.cz/kurz/jak-na-uzkosti-obavy-stres-a-emoce-353?pid=774708\" target=\"_blank\" rel=\"noopener noreferrer\">anxiety course</a></b> or the <b><a href=\"https://skillmea.cz/online-kurzy/emocni-fitko-jak-na-emoce\">emotional fitness course: how to handle emotions</a></b>, which will teach you to work effectively with emotions. Thanks to this, we'll be able to continue providing daily #nekaslinasebe tips for free. <b>A new addition is the book <a href=\"https://obchod.portal.cz/hry-a-procvicovani/nekasli-na-sebe\" target=\"_blank\" rel=\"noopener noreferrer\">Don't Give Up on Yourself: Your Partner on the Journey with Emotions.</a></b> Thank you in advance."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "intro": "Do you have an idea for a #nekaslinasebe tip or improvement? Want to give us feedback? Don't hesitate to write and share your experiences. Thanks in advance from the entire Kpsychologovi team.",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "I want to write to you:",
+    "loading": "Loading",
+    "sent": "Thank you, your message has been successfully sent.",
+    "submit": "Send"
+  }
+}
