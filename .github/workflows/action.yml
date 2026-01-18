@@ -46,13 +46,13 @@ jobs:
           cp -r ./assets/* ./dist/assets
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: website
           path: ./dist/
 
       - name: Upload GitHub Pages artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: github-pages
           path: ./dist/
@@ -64,7 +64,7 @@ jobs:
     needs: build
     steps:
       - name: Download build artifacts
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           name: website
           path: ./
