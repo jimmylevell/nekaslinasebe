@@ -19,7 +19,7 @@ interface NavbarProps {
 
 export const Navbar = ({ currentPath = '/' }: NavbarProps) => {
   const { t, i18n } = useTranslation();
-  
+
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
   };
@@ -91,7 +91,7 @@ export const Navbar = ({ currentPath = '/' }: NavbarProps) => {
               </button>
             </div>
             <a
-              href="/#"
+              href="#"
               className="burger"
               data-bs-toggle="collapse"
               data-bs-target="#main-navbar"
