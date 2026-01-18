@@ -4,6 +4,9 @@ Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
 Website of the Nekaslinasebe project - a mental health tips platform built with React and TypeScript.
 
+- DEV: [https://jimmylevell.github.io/nekaslinasebe/](https://jimmylevell.github.io/nekaslinasebe/)
+- Prod: [https://nekaslinasebe.kpsychologovi.cz/](https://nekaslinasebe.kpsychologovi.cz/)
+
 ## Technology Stack
 
 - **React 18** - Modern UI library for building component-based interfaces
