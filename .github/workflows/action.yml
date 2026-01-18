@@ -48,7 +48,7 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: website-files
+          name: github-pages
           path: ./dist/
 
   prod-deploy:
@@ -60,7 +60,7 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v5
         with:
-          name: website-files
+          name: github-pages
           path: ./
 
       - name: 📂 Sync files
@@ -90,7 +90,7 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v5
         with:
-          name: website-files
+          name: github-pages
           path: ./
 
       - name: Setup Pages
