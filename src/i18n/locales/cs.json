@@ -49,13 +49,13 @@
     "errorLoading": "Chyba při načítání tipů: {{error}}"
   },
   "weekPlanner": {
-    "title": "Week Planner",
-    "intro": "Generate a personalized week with random tips to help you practice self-care.",
-    "feelingLuckyDay": "Feeling Lucky - Day Planner",
-    "feelingLuckyWeek": "Feeling Lucky - Week Planner",
-    "plannerReady": "Your personalized planner is ready:",
-    "openPlanner": "Open My Planner",
-    "copyLink": "Or copy this link:"
+    "title": "Plánovač týdnů",
+    "intro": "Vygeneruj si personalizovaný týden s náhodnými tipy pro pravidelnou sebepéči.",
+    "feelingLuckyDay": "Mám štěstí - Denní plánovač",
+    "feelingLuckyWeek": "Mám štěstí - Týdenní plánovač",
+    "plannerReady": "Tvůj personalizovaný plánovač je připraven:",
+    "openPlanner": "Otevřít můj plánovač",
+    "copyLink": "Nebo zkopíruj tento odkaz:"
   },
   "tipDetail": {
     "notFound": "Tip nenalezen",
@@ -64,7 +64,7 @@
   },
   "contact": {
     "title": "Kontaktuj nás",
-    "intro": "Máš nápad na tip #nekaslinasebe nebo na vylepšení? Chceš nám dát zpětnou vazbu? Neváhej nám napsat a posdílet své zkušenosti. Předem za celý tým Kpsychologovi děkujeme.",
+    "intro": "Máš nápad na tip #nekaslinasebe nebo na vylepšení? Chceš nám dát zpětnou vazbu? Neváhej nám napsat a podílet své zkušenosti. Předem za celý tým Kpsychologovi děkujeme.",
     "name": "Jméno",
     "email": "E-mail",
     "subject": "Předmět",
