@@ -66,6 +66,7 @@ jobs:
             **/.github*
             **/.github*/**
             **/scripts/*
+            **/node_modules*
 
   dev-prepare:
     name: DEV - Prepare for GitHub Pages

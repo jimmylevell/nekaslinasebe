@@ -1,10 +1,17 @@
 {
+  "name": "nekaslinasebe",
+  "version": "1.0.0",
+  "description": "Weekly tips management system",
+  "main": "index.html",
   "scripts": {
-    "start": "http-server -p 8080",
-    "dev": "http-server -p 8080 -c-1",
+    "start": "serve -p 8080",
+    "dev": "serve -p 8080 -c-1",
     "migrate": "node ./scripts/migrate-tips.js"
   },
+  "keywords": ["tips", "weekly", "management"],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "http-server": "^14.1.1"
+    "serve": "^14.2.5"
   }
 }
