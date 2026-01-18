@@ -1,3 +1,5 @@
+Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
+
 # Nekaslinasebe
 
 Website of the Nekaslinasebe project - a mental health tips platform built with React and TypeScript.
@@ -97,8 +99,9 @@ nekaslinasebe/
 
 ## Based on MyPortfolio template
 
-Template Name: MyPortfolio  
-Template URL: https://bootstrapmade.com/myportfolio-bootstrap-portfolio-website-template/  
-Author: BootstrapMade.com  
+Template Name: MyPortfolio
+Template URL: https://bootstrapmade.com/myportfolio-bootstrap-portfolio-website-template/
+Author: BootstrapMade.com
 License: https://bootstrapmade.com/license/
 
+[![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]

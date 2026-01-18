@@ -33,11 +33,19 @@ jobs:
         run: |
           npm run migrate
 
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Build website
+        run: |
+          npm run build
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: website-files
-          path: ./
+          path: ./dist/
 
   prod-deploy:
     name: PROD - Deploy to FTP
