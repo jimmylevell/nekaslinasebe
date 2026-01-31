@@ -56,7 +56,7 @@ export const TipDetailPage = () => {
           <div className="row align-items-stretch">
             <div className="col-md-8" data-aos="fade-up">
               <img
-                src={tip.imageBig || tip.image}
+                src={`${import.meta.env.BASE_URL}${tip.imageBig || tip.image}`}
                 alt={tip.title}
                 className="img-fluid"
               />

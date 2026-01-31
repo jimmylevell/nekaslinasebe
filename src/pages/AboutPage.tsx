@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 export const AboutPage = () => {
   const { t } = useTranslation();
-  
+
   return (
     <section className="section pb-5">
       <div className="container">
@@ -17,7 +17,7 @@ export const AboutPage = () => {
         <div className="row">
           <div className="col-md-12 mb-5 mb-md-0" data-aos="fade-up">
             <p>
-              <img src="/assets/img/person_1_sq.jpg" alt="Image" className="img-fluid" />
+              <img src={`${import.meta.env.BASE_URL}assets/img/person_1_sq.jpg`} alt="Image" className="img-fluid" />
             </p>
             <p dangerouslySetInnerHTML={{ __html: t('about.solution') }} />
             <p dangerouslySetInnerHTML={{ __html: t('about.howTo') }} />
