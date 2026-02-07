@@ -23,8 +23,7 @@ jobs:
 
     steps:
       - name: 🚚 Get latest code
-        uses: actions/checkout@v5
-
+        uses: actions/checkout@v6
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
@@ -74,11 +73,11 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v7
         with:
-          name: website
+          name: website-files
           path: ./
 
       - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: sl46.web.hostpoint.ch
           username: deploy_2@kpsychologovi.cz
