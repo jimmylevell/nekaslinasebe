@@ -17,7 +17,7 @@ export const AboutPage = () => {
         <div className="row">
           <div className="col-md-12 mb-5 mb-md-0" data-aos="fade-up">
             <p>
-              <img src={`${import.meta.env.BASE_URL}assets/img/person_1_sq.jpg`} alt="Image" className="img-fluid" />
+              <img src={`${import.meta.env.VITE_BASE_PATH}assets/img/person_1_sq.jpg`} alt="Image" className="img-fluid" />
             </p>
             <p dangerouslySetInnerHTML={{ __html: t('about.solution') }} />
             <p dangerouslySetInnerHTML={{ __html: t('about.howTo') }} />

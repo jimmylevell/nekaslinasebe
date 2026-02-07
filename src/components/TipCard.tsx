@@ -8,6 +8,10 @@ interface TipCardProps {
 
 export const TipCard = ({ tip }: TipCardProps) => {
   const { t } = useTranslation();
+  const basePath = import.meta.env.VITE_BASE_PATH;
+  const imagePath = basePath.endsWith('/') && tip.image.startsWith('/')
+    ? tip.image.slice(1)
+    : tip.image;
 
   return (
     <div className={`item ${tip.category} col-sm-6 col-md-4 col-lg-4 mb-4`}>
@@ -17,7 +21,7 @@ export const TipCard = ({ tip }: TipCardProps) => {
           <span>{t('common.clickOnMe')}</span>
         </div>
         <span className="overlay category">{tip.category}</span>
-        <img className="img-fluid" src={`${import.meta.env.BASE_URL}${tip.image}`} alt={tip.title} />
+        <img className="img-fluid" src={basePath + imagePath} alt={tip.title} />
       </Link>
     </div>
   );

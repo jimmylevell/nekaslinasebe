@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 export const TipDetailPage = () => {
   const { weekId, tipNumber } = useParams<{ weekId: string; tipNumber: string }>();
   const { getTip, loading, error } = useTips();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   if (loading) {
     return (
@@ -40,13 +40,19 @@ export const TipDetailPage = () => {
     );
   }
 
+  const basePath = import.meta.env.VITE_BASE_PATH || '/';
+  const imageUrl = tip.imageBig || tip.image;
+  const imagePath = basePath.endsWith('/') && imageUrl.startsWith('/')
+    ? imageUrl.slice(1)
+    : imageUrl;
+
   return (
     <section className="section">
       <div className="container">
         <div className="row mb-8 align-items-center">
           <div className="col-md-8,9" data-aos="fade-up">
             <h2>{tip.title}</h2>
-            <p>{tip.content}</p>
+            <p>{i18n.language === 'en' ? tip.content_en : tip.content}</p>
           </div>
         </div>
       </div>
@@ -56,7 +62,7 @@ export const TipDetailPage = () => {
           <div className="row align-items-stretch">
             <div className="col-md-8" data-aos="fade-up">
               <img
-                src={`${import.meta.env.BASE_URL}${tip.imageBig || tip.image}`}
+                src={basePath + imagePath}
                 alt={tip.title}
                 className="img-fluid"
               />
@@ -70,7 +76,7 @@ export const TipDetailPage = () => {
                   <span className="text-muted"></span>
                 </p>
                 <div className="mb-5">
-                  <p>{tip.practicalTips || ''}</p>
+                  <p>{i18n.language === 'en' ? (tip.practicalTips_en || '') : (tip.practicalTips || '')}</p>
                 </div>
               </div>
             </div>

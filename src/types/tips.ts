@@ -14,7 +14,9 @@ export interface Tip {
   image: string;
   imageBig?: string;
   content: string;
+  content_en?: string;
   practicalTips?: string;
+  practicalTips_en?: string;
 }
 
 export interface TipsData {

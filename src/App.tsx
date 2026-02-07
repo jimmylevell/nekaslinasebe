@@ -10,7 +10,7 @@ import { TipDetailPage } from './pages/TipDetailPage';
 
 function App() {
   return (
-    <Router basename={import.meta.env.BASE_URL}>
+    <Router basename={import.meta.env.VITE_BASE_PATH}>
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
