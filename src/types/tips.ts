@@ -6,6 +6,12 @@ export interface Week {
   endDate: string;
 }
 
+export interface PracticalTips {
+  oneMinute: string;
+  fiveMinutes: string;
+  fifteenMinutes: string;
+}
+
 export interface Tip {
   week: string;
   tipNumber: number;
@@ -15,8 +21,11 @@ export interface Tip {
   imageBig?: string;
   content: string;
   content_en?: string;
-  practicalTips?: string;
-  practicalTips_en?: string;
+  // Support both old string format and new structured format
+  practicalTips?: string | PracticalTips;
+  practicalTips_en?: string | PracticalTips;
+  psContent?: string;
+  psContent_en?: string;
 }
 
 export interface TipsData {

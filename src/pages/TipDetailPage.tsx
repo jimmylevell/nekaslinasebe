@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useTips } from '../hooks/useTips';
 import { useTranslation } from 'react-i18next';
+import type { PracticalTips } from '../types/tips';
 
 export const TipDetailPage = () => {
   const { weekId, tipNumber } = useParams<{ weekId: string; tipNumber: string }>();
@@ -46,13 +47,30 @@ export const TipDetailPage = () => {
     ? imageUrl.slice(1)
     : imageUrl;
 
+  // Helper function to check if practicalTips is structured format
+  const isStructuredTips = (tips: string | PracticalTips | undefined): tips is PracticalTips => {
+    return typeof tips === 'object' && tips !== null && 'oneMinute' in tips;
+  };
+
+  // Get practical tips based on language and format
+  const practicalTips = i18n.language === 'en' ? tip.practicalTips_en : tip.practicalTips;
+  const hasStructuredTips = isStructuredTips(practicalTips);
+
+  // Get PS content
+  const psContent = i18n.language === 'en' ? tip.psContent_en : tip.psContent;
+
+  // Split content into paragraphs for better formatting
+  const contentParagraphs = (i18n.language === 'en' ? tip.content_en : tip.content)?.split('\n\n') || [];
+
   return (
     <section className="section">
       <div className="container">
         <div className="row mb-8 align-items-center">
           <div className="col-md-8,9" data-aos="fade-up">
             <h2>{tip.title}</h2>
-            <p>{i18n.language === 'en' ? tip.content_en : tip.content}</p>
+            {contentParagraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
           </div>
         </div>
       </div>
@@ -73,14 +91,39 @@ export const TipDetailPage = () => {
                   <b>{t('tipDetail.howToInPractice')}</b>
                 </h3>
                 <p className="mb-4">
-                  <span className="text-muted"></span>
+                  <span className="text-muted">{t('tipDetail.ifYouHave')}</span>
                 </p>
                 <div className="mb-5">
-                  <p>{i18n.language === 'en' ? (tip.practicalTips_en || '') : (tip.practicalTips || '')}</p>
+                  {hasStructuredTips ? (
+                    <>
+                      {practicalTips.oneMinute && (
+                        <p>
+                          <b>1 {t('tipDetail.minute')}</b>: {practicalTips.oneMinute}
+                        </p>
+                      )}
+                      {practicalTips.fiveMinutes && (
+                        <p>
+                          <b>5 {t('tipDetail.minutes')}</b>: {practicalTips.fiveMinutes}
+                        </p>
+                      )}
+                      {practicalTips.fifteenMinutes && (
+                        <p>
+                          <b>15 {t('tipDetail.minutes')}</b>: {practicalTips.fifteenMinutes}
+                        </p>
+                      )}
+                    </>
+                  ) : (
+                    <p>{practicalTips as string || ''}</p>
+                  )}
                 </div>
               </div>
             </div>
           </div>
+          {psContent && (
+            <div className="col-md-12 ml-auto mt-3">
+              <p><b>PS:</b> {psContent}</p>
+            </div>
+          )}
           <div className="col-md-12 ml-auto mt-3">
             <p dangerouslySetInnerHTML={{ __html: t('tipDetail.support') }} />
           </div>

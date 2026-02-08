@@ -8,7 +8,7 @@ class SimpleTipsMigrator {
         this.rootDir = path.join(__dirname, '..');
         this.tipsDir = path.join(this.rootDir, 'tips');
         this.assetsDir = path.join(this.rootDir, 'assets', 'img');
-        this.dataFile = path.join(this.rootDir, 'data', 'tips.json');
+        this.dataFile = path.join(this.rootDir, 'assets', 'data', 'tips.json');
 
         this.weeks = [];
         this.tips = [];
@@ -88,27 +88,59 @@ class SimpleTipsMigrator {
         const titleMatch = htmlContent.match(/<h2[^>]*>(.*?)<\/h2>/i);
         const title = titleMatch ? titleMatch[1].replace(/<[^>]*>/g, '').trim() : `${tipNumber}.tip #nekaslinasebe`;
 
-        // Extract main content from first paragraph after h2
-        const contentMatch = htmlContent.match(/<h2[^>]*>.*?<\/h2>\s*<p[^>]*>(.*?)<\/p>/is);
+        // Extract ALL main content paragraphs after h2 (until the next major section)
         let content = '';
-        if (contentMatch) {
-            content = contentMatch[1]
-                .replace(/<[^>]*>/g, '') // Remove HTML tags
-                .replace(/\s+/g, ' ') // Normalize whitespace
-                .trim()
-                .substring(0, 500);
-            if (content.length === 500) content += '...';
+        const mainContentSection = htmlContent.match(/<h2[^>]*>.*?<\/h2>(.*?)(?=<div class="site-section|$)/is);
+        if (mainContentSection) {
+            const paragraphs = mainContentSection[1].match(/<p[^>]*>(.*?)<\/p>/gis);
+            if (paragraphs) {
+                content = paragraphs
+                    .map(p => p.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim())
+                    .filter(p => p.length > 0)
+                    .join('\n\n');
+            }
         }
 
-        // Extract practical tips from the content
-        let practicalTips = '';
-        const practicalMatch = htmlContent.match(/<div class="mb-5">\s*<p>(.*?)<\/p>/is);
-        if (practicalMatch) {
-            practicalTips = practicalMatch[1]
-                .replace(/<[^>]*>/g, '')
-                .replace(/\s+/g, ' ')
-                .trim()
-                .substring(0, 800);
+        // Extract the three time-based practical tips separately
+        let oneMinuteTip = '';
+        let fiveMinuteTip = '';
+        let fifteenMinuteTip = '';
+
+        const practicalSection = htmlContent.match(/<div class="mb-5">(.*?)<\/div>/is);
+        if (practicalSection) {
+            const allParagraphs = practicalSection[1].match(/<p[^>]*>.*?<\/p>/gis);
+            if (allParagraphs) {
+                allParagraphs.forEach(p => {
+                    const cleanP = p.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+                    if (cleanP.match(/^1\s*minut/i)) {
+                        oneMinuteTip = cleanP.replace(/^1\s*minut[^:]*:\s*/i, '').trim();
+                    } else if (cleanP.match(/^5\s*minut/i)) {
+                        fiveMinuteTip = cleanP.replace(/^5\s*minut[^:]*:\s*/i, '').trim();
+                    } else if (cleanP.match(/^15\s*minut/i)) {
+                        fifteenMinuteTip = cleanP.replace(/^15\s*minut[^:]*:\s*/i, '').trim();
+                    }
+                });
+            }
+        }
+
+        // Extract PS section(s)
+        let psContent = '';
+        const psMatches = htmlContent.match(/<div class="col-md-12[^"]*"[^>]*>\s*<p[^>]*>PS:?(.*?)<\/p>\s*<\/div>/gis);
+        if (psMatches) {
+            psContent = psMatches
+                .map(match => {
+                    const psMatch = match.match(/<p[^>]*>(.*?)<\/p>/is);
+                    if (psMatch) {
+                        return psMatch[1]
+                            .replace(/<[^>]*>/g, '')
+                            .replace(/\s+/g, ' ')
+                            .replace(/^PS:?\s*/i, '')
+                            .trim();
+                    }
+                    return '';
+                })
+                .filter(p => p.length > 0)
+                .join('\n\n');
         }
 
         // Extract image path
@@ -169,7 +201,12 @@ class SimpleTipsMigrator {
             image: image,
             imageBig: imageBig,
             category: category,
-            practicalTips: practicalTips
+            practicalTips: {
+                oneMinute: oneMinuteTip,
+                fiveMinutes: fiveMinuteTip,
+                fifteenMinutes: fifteenMinuteTip
+            },
+            psContent: psContent
         };
     }
 
@@ -246,12 +283,30 @@ class SimpleTipsMigrator {
             if (existingTipIndex >= 0) {
                 // Update existing tip with more complete data
                 const existing = mergedTips[existingTipIndex];
+
+                // Merge practical tips intelligently
+                let mergedPracticalTips = tip.practicalTips;
+                if (existing.practicalTips) {
+                    // If existing is a string (old format), keep new structured format
+                    if (typeof existing.practicalTips === 'string') {
+                        mergedPracticalTips = tip.practicalTips;
+                    } else {
+                        // Both are objects, merge them keeping non-empty values
+                        mergedPracticalTips = {
+                            oneMinute: tip.practicalTips.oneMinute || existing.practicalTips.oneMinute || '',
+                            fiveMinutes: tip.practicalTips.fiveMinutes || existing.practicalTips.fiveMinutes || '',
+                            fifteenMinutes: tip.practicalTips.fifteenMinutes || existing.practicalTips.fifteenMinutes || ''
+                        };
+                    }
+                }
+
                 mergedTips[existingTipIndex] = {
                     ...existing,
                     ...tip,
                     // Keep existing data if it's more complete
                     content: existing.content && existing.content.length > tip.content.length ? existing.content : tip.content,
-                    practicalTips: existing.practicalTips && existing.practicalTips.length > tip.practicalTips.length ? existing.practicalTips : tip.practicalTips
+                    practicalTips: mergedPracticalTips,
+                    psContent: tip.psContent || existing.psContent || ''
                 };
                 console.log(`    🔄 Updated existing tip: ${tip.week}-${tip.tipNumber}`);
             } else {
@@ -323,12 +378,28 @@ class SimpleTipsMigrator {
             console.log(`  Content: ${sample.content.substring(0, 100)}...`);
             console.log(`  Image: ${sample.image}`);
             console.log(`  Category: ${sample.category}`);
+            if (sample.practicalTips) {
+                const tips = sample.practicalTips;
+                console.log(`  Practical Tips:`);
+                if (tips.oneMinute) console.log(`    - 1 min: ${tips.oneMinute.substring(0, 50)}...`);
+                if (tips.fiveMinutes) console.log(`    - 5 min: ${tips.fiveMinutes.substring(0, 50)}...`);
+                if (tips.fifteenMinutes) console.log(`    - 15 min: ${tips.fifteenMinutes.substring(0, 50)}...`);
+            }
+            if (sample.psContent) {
+                console.log(`  PS: ${sample.psContent.substring(0, 50)}...`);
+            }
         }
 
         // Check for any issues
         console.log('\n🔍 Quality Check:');
         const tipsWithoutContent = this.finalData.tips.filter(t => !t.content || t.content.length < 20);
         const tipsWithoutImages = this.finalData.tips.filter(t => !t.image);
+        const tipsWithoutPracticalTips = this.finalData.tips.filter(t => {
+            if (!t.practicalTips) return true;
+            if (typeof t.practicalTips === 'string') return !t.practicalTips;
+            return !t.practicalTips.oneMinute && !t.practicalTips.fiveMinutes && !t.practicalTips.fifteenMinutes;
+        });
+        const tipsWithoutPS = this.finalData.tips.filter(t => !t.psContent || t.psContent.length < 5);
 
         if (tipsWithoutContent.length > 0) {
             console.log(`  ⚠️  ${tipsWithoutContent.length} tips with minimal content`);
@@ -336,8 +407,14 @@ class SimpleTipsMigrator {
         if (tipsWithoutImages.length > 0) {
             console.log(`  ⚠️  ${tipsWithoutImages.length} tips without images`);
         }
-        if (tipsWithoutContent.length === 0 && tipsWithoutImages.length === 0) {
-            console.log(`  ✅ All tips have content and images`);
+        if (tipsWithoutPracticalTips.length > 0) {
+            console.log(`  ⚠️  ${tipsWithoutPracticalTips.length} tips without practical tips (1/5/15 min)`);
+        }
+        if (tipsWithoutPS.length > 0) {
+            console.log(`  ℹ️  ${tipsWithoutPS.length} tips without PS section (this may be normal)`);
+        }
+        if (tipsWithoutContent.length === 0 && tipsWithoutImages.length === 0 && tipsWithoutPracticalTips.length === 0) {
+            console.log(`  ✅ All tips have content, images, and practical tips`);
         }
     }
 }
