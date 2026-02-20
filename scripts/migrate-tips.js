@@ -17,8 +17,19 @@ class SimpleTipsMigrator {
     async migrate() {
         console.log('🚀 Starting migration of existing tips...');
 
-        const currentTips = JSON.parse(fs.readFileSync(this.dataFile, 'utf8'));
-
+        // Load existing tips.json or create a default structure
+        let currentTips = { weeks: [], tips: [] };
+        if (fs.existsSync(this.dataFile)) {
+            try {
+                currentTips = JSON.parse(fs.readFileSync(this.dataFile, 'utf8'));
+                console.log('📖 Found existing tips.json, will merge data...');
+            } catch (error) {
+                console.log('⚠️  Could not parse existing tips.json, starting fresh');
+                currentTips = { weeks: [], tips: [] };
+            }
+        } else {
+            console.log('📝 No existing tips.json found, creating new file...');
+        }
 
         try {
             await this.scanTipsDirectories(currentTips);
