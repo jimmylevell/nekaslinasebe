@@ -48,6 +48,12 @@
     "title": "Archiv",
     "errorLoading": "Chyba při načítání tipů: {{error}}"
   },
+  "categories": {
+    "Emotion": "Emoce",
+    "Physical": "Fyzičko",
+    "Mental": "Mentálko",
+    "Social": "Sociálko"
+  },
   "weekPlanner": {
     "title": "Plánovač týdnů",
     "intro": "Vygeneruj si personalizovaný týden s náhodnými tipy pro pravidelnou sebepéči.",

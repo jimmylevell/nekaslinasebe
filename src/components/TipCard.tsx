@@ -20,7 +20,9 @@ export const TipCard = ({ tip }: TipCardProps) => {
           <h3>{tip.title}</h3>
           <span>{t('common.clickOnMe')}</span>
         </div>
-        <span className="overlay category">{tip.category}</span>
+        <span className={`category-badge category-${tip.category.toLowerCase()}`}>
+          {t(`categories.${tip.category}`)}
+        </span>
         <img className="img-fluid" src={basePath + imagePath} alt={tip.title} />
       </Link>
     </div>

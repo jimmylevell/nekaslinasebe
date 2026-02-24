@@ -48,6 +48,12 @@
     "title": "Archive",
     "errorLoading": "Error loading tips: {{error}}"
   },
+  "categories": {
+    "Emotion": "Emotion",
+    "Physical": "Physical",
+    "Mental": "Mental",
+    "Social": "Social"
+  },
   "weekPlanner": {
     "title": "Week Planner",
     "intro": "Generate a personalized week with random tips to help you practice self-care.",
