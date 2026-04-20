@@ -52,7 +52,7 @@ jobs:
           path: ./
 
       - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: sl46.web.hostpoint.ch
           username: deploy_2@kpsychologovi.cz
